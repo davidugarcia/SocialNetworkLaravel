@@ -11,6 +11,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    //este metodo solo dara acceso a los usuarios que estan identificados 
     public function __construct()
     {
         $this->middleware('auth');
