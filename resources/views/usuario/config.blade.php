@@ -4,11 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+        @include('includes.message')
+        
             <div class="card">
                 <div class="card-header">Mis configuracion</div>
 
                 <div class="card-body">
-                    <form method="POST" action="s">
+                    <form method="POST" action="{{ route('user.update') }}">
                         @csrf
 
                         <div class="form-group row">
