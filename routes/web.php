@@ -42,3 +42,6 @@ Route::get('/', function ()
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//ruta para configuraciones -- view app.blade.php
+Route::get('/configuraciones', 'usuarioController@config')->name('config');
