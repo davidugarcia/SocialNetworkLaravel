@@ -19,6 +19,7 @@
 
    <!-- Styles -->
    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -53,7 +54,6 @@
                   @endif
                   
                   @else
-
                     <li class="nav-item">
                         <a href="" class="nav-link">Inicio</a>
                     </li>
@@ -68,8 +68,9 @@
                     </li>
 
                     <li>
-                    
-                    </li>
+                        <!--ubicado en la carpeta de inludes de view-->
+						@include('includes.avatar')
+					</li>
 
 
                     <li class="nav-item dropdown">

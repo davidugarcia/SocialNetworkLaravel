@@ -13,10 +13,10 @@
 
 //use App\Image;
 
-/*Route::get('/', function () 
+Route::get('/', function ()
 {
 
-    $images = Image::all();
+    /*$images = Image::all();
 	foreach($images as $image){
 		echo $image->image_path."<br/>";
 		echo $image->description."<br/>";
@@ -35,12 +35,12 @@
 	}
 	
 	die();
-
-    return view('welcome');
-});
 */
-Auth::routes();
+   return view('welcome');
+});
 
+Auth::routes();
+// home principal
 Route::get('/', 'HomeController@index')->name('home');
 
 //-----------usuario
@@ -49,3 +49,4 @@ Route::get('/configuraciones', 'usuarioController@config')->name('config');
 
 //datos de formu de config.blade.php los envia al controlador usuario metodo update
 Route::post('/user/update', 'usuarioController@update')->name('user.update');
+Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.avatar');
