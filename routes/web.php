@@ -43,10 +43,38 @@ Auth::routes();
 // home principal
 Route::get('/', 'HomeController@index')->name('home');
 
-//-----------usuario
-//ruta para configuraciones -- view app.blade.php
+//-----------USERS----------------------
+//ruta para configuraciones -- link en view app.blade.php el controlador te envia a la view usuario/config.php
 Route::get('/configuraciones', 'usuarioController@config')->name('config');
-
 //datos de formu de config.blade.php los envia al controlador usuario metodo update
 Route::post('/user/update', 'usuarioController@update')->name('user.update');
+//rutas para obtener la img de las carpeta storage del usuario por medio del controlador y asi colocarlas en la view de app.blade.php y el formul de config.blade.php
 Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.avatar');
+
+
+// --------------IMAGEN---------------------
+//link en view app.blade.php, el controlador te envia ala view createimg.blade.php formulario para crear una img y descripcion
+Route::get('/subir/imagen', 'ImageController@createimg')->name('image.create');
+//envia los datos del view createimg.blade.php formulario al controlador para guarda una img con su descripcion creada por el user 
+Route::post('/image/guardar', 'ImageController@saveimg')->name('image.guardar');
+
+/*
+Route::get('/perfil/{id}', 'UserController@profile')->name('profile');
+Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
+
+// IMAGEN
+Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
+Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
+Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
+Route::get('/imagen/editar/{id}', 'ImageController@edit')->name('image.edit');
+Route::post('/image/update', 'ImageController@update')->name('image.update');
+
+// COMENTARIO
+Route::post('/comment/save', 'CommentController@save')->name('comment.save');
+Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+
+// LIKE
+Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
+Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('like.delete');
+Route::get('/likes', 'LikeController@index')->name('likes');
+*/

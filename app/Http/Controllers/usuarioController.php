@@ -40,14 +40,13 @@ class usuarioController extends Controller
 			'nick' => 'required|string|max:255|unique:users,nick,'.$id,
 			//el email debe ser unico o el mismo si es el mismo usuario
          'email' => 'required|string|email|max:255|unique:users,email,'.$id
-      ]);
-
+		]);
+		
 		// Recoger datos validados
 		$name = $request->input('name');
 		$surname = $request->input('surname');
 		$nick = $request->input('nick');
 		$email = $request->input('email');
-
 		/*
 		var_dump($id);
 		var_dump($name);
@@ -61,34 +60,34 @@ class usuarioController extends Controller
 		$user->surname = $surname;
 		$user->nick = $nick;
 		$user->email = $email;
-		/*--------------------------------------------------------------------*/
+	
 		// Subir la imagen
 		$image_path = $request->file('image_path');
-		//----------------video 368
+		
 		if($image_path){
 			// Poner nombre unicos
 			$image_path_name = time().$image_path->getClientOriginalName();
-
 			// Guardar en la carpeta storage (storage/app/usuarios/y la imagen guardada)
 			//solo imagenes png
 			Storage::disk('users')->put($image_path_name, File::get($image_path));
-
 			// Seteo el nombre de la imagen en el objeto
 			//se inserta el nombre de la img en la entidad image en la tabla users
 			$user->image = $image_path_name;
 		}
-		//------------------------------------------------------------------------
+
+		//Actualiza en la base de datos, tabla users
 		$user->update();
 		
 		//redireccion ala ruta especificada en route web.php
 		return redirect()->route('config')
 						//mensaje que deseamos que muestre cuando se actualiza los datos en config.blade.php
-						 ->with(['message'=>'Usuario actualizado correctamente']);
-
+						->with(['message'=>'Usuario actualizado correctamente']);
 	}
 
+	//obtiene la imagen para mostrarla en el navbar y en la view config.php del user
 	public function getImage($filename){
 		$file = Storage::disk('users')->get($filename);
 		return new Response($file, 200);
 	}
+
 }
