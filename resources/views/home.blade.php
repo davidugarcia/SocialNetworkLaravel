@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
    <div class="row justify-content-center">
-      
+
       <div class="col-md-8">
 
 
@@ -37,7 +37,19 @@
 
                <div class="description">
                   <span class="nickname">{{'@'.$imagen->user->nick}} </span>
+                  <span class="nickname date"></span>
                   <p>{{$imagen->description}}</p>
+               </div>
+
+               <div class="likes">
+                  <img src="{{asset('img/heart-black.png')}}" data-id="" class="btn-dislike" />
+               </div>
+
+
+               <div class="comments">
+                  <a href="" class="btn btn-sm btn-warning btn-comments">
+                     Comentarios ({{count($imagen->comments)}})
+                  </a>
                </div>
             </div>
 
