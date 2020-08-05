@@ -64,4 +64,9 @@ class ImageController extends Controller
 								->with(['message' => 'La foto ha sido subida correctamente!!']);
 	}
 
+	public function getImage($filename){
+		$file = Storage::disk('images')->get($filename);
+		return new Response($file, 200);
+	}
+
 }

@@ -57,13 +57,14 @@ Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.
 Route::get('/subir/imagen', 'ImageController@createimg')->name('image.create');
 //envia los datos del view createimg.blade.php formulario al controlador para guarda una img con su descripcion creada por el user 
 Route::post('/image/guardar', 'ImageController@saveimg')->name('image.guardar');
+//ruta para poder mostrar las imagenes del disk imagenes en la view home.blade.php
+Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 
 /*
 Route::get('/perfil/{id}', 'UserController@profile')->name('profile');
 Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
 
 // IMAGEN
-Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
 Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
 Route::get('/imagen/editar/{id}', 'ImageController@edit')->name('image.edit');
