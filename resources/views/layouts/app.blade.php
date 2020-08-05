@@ -55,7 +55,7 @@
                   
                   @else
                     <li class="nav-item">
-                        <a href="" class="nav-link">Inicio</a>
+                        <a href="{{ route('home') }}" class="nav-link">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a href="" class="nav-link">Gente</a>

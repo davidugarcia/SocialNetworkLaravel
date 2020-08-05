@@ -69,4 +69,17 @@ class ImageController extends Controller
 		return new Response($file, 200);
 	}
 
+	public function detalles($id){
+
+		//
+		$image = Image::find($id);
+		//
+		return view('image.detalle',[
+			'imagen' => $image
+		]);
+
+	}
+
+
+
 }

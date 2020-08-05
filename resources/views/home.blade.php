@@ -21,7 +21,7 @@
                @endif
 
                <div class="data-user">
-                  <a href="">
+                  <a href="{{ route('image.detalle',['id' => $imagen->id])  }}">
                      {{$imagen->user->name.' '.$imagen->user->surname}}
                      <span class="nickname">
                         {{' | @'.$imagen->user->nick}}
