@@ -27,7 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         //se trae todo el objeto del file Image de modelo
-        $images = Image::orderBy('id', 'desc')->get();//paginate(5);
+        //se utiliza el objeto pagination por cinco elementos por paginas
+        $images = Image::orderBy('id', 'desc')->paginate(5);
         return view('home', [
 			'images' => $images
 		]);

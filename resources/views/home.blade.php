@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
    <div class="row justify-content-center">
+      
       <div class="col-md-8">
 
 
@@ -42,7 +43,11 @@
 
          </div>
          @endforeach
+
+         <div class="clearfix"></div>
+         {{$images->links()}}
       </div>
+
    </div>
 </div>
 
