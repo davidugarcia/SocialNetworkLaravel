@@ -14,8 +14,8 @@
                <div class="container-avatar">
                   <img src="{{ route('user.avatar',['filename'=>$imagen->user->image]) }}" class="avatar" />
                </div>
-
-
+               
+               <!--la variable $imagen proviene del controlador Image metodo detalles-->
                <div class="data-user">
                   {{$imagen->user->name.' '.$imagen->user->surname}}
                   <span class="nickname">
@@ -31,6 +31,7 @@
 
                <div class="description">
                   <span class="nickname">{{'@'.$imagen->user->nick}} </span>
+                  <span class="nickname date">{{' | '.\FormatoHora::LongTimeFilter($imagen->created_at)}}</span>
                   <p>{{$imagen->description}}</p>
                </div>
 

@@ -70,10 +70,9 @@ class ImageController extends Controller
 	}
 
 	public function detalles($id){
-
-		//
+		//extrae los registro por medio del parametro $id
 		$image = Image::find($id);
-		//
+		//te envia ala view image/detalle.blade.php
 		return view('image.detalle',[
 			'imagen' => $image
 		]);

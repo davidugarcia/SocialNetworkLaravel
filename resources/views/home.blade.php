@@ -6,7 +6,7 @@
 
       <div class="col-md-8">
 
-
+         <!--la variable $images proviene del controlador Home metodo index-->
          @foreach($images as $imagen)
 
 
@@ -37,7 +37,7 @@
 
                <div class="description">
                   <span class="nickname">{{'@'.$imagen->user->nick}} </span>
-                  <span class="nickname date"></span>
+                  <span class="nickname date">{{' | '.\FormatoHora::LongTimeFilter($imagen->created_at)}}</span>
                   <p>{{$imagen->description}}</p>
                </div>
 

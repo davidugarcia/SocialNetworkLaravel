@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//se utiliza del modelo Image con los registros de la tabla images
 use App\Image;
 
 class HomeController extends Controller
