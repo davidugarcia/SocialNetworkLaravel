@@ -14,7 +14,7 @@
                <div class="container-avatar">
                   <img src="{{ route('user.avatar',['filename'=>$imagen->user->image]) }}" class="avatar" />
                </div>
-               
+
                <!--la variable $imagen proviene del controlador Image metodo detalles-->
                <div class="data-user">
                   {{$imagen->user->name.' '.$imagen->user->surname}}
@@ -39,11 +39,35 @@
                   <img src="{{asset('img/heart-black.png')}}" data-id="" class="btn-like" />
                </div>
 
+               <div class="clearfix"></div>
+               <div class="comments">
+
+                  <h2>Comentarios ({{count($imagen->comments)}})</h2>
+                  <hr>
+
+                  <form method="POST" action="">
+                     @csrf
+
+                     <input type="hidden" name="image_id" value="{{$imagen->id}}" />
+                     <p>
+                        <textarea class="form-control {{ $errors->has('contenido') ? 'is-invalid' : '' }}"
+                           name="contenido"></textarea>
+                        @if($errors->has('contenido'))
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $errors->first('contenido') }}</strong>
+                        </span>
+                        @endif
+                     </p>
+                     <button type="submit" class="btn btn-success">
+                        Comentar
+                     </button>
+                  </form>
+
+               </div>
+
             </div>
 
-
          </div>
-
       </div>
-   </div>
-   @endsection
+
+      @endsection
