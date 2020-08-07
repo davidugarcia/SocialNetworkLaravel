@@ -43,16 +43,16 @@ Auth::routes();
 // home principal
 Route::get('/', 'HomeController@index')->name('home');
 
-//-----------USERS----------------------
+//USERS
 //ruta para configuraciones -- link en view app.blade.php el controlador te envia a la view usuario/config.php
 Route::get('/configuraciones', 'usuarioController@config')->name('config');
 //datos de formu de config.blade.php los envia al controlador usuario metodo update
 Route::post('/user/update', 'usuarioController@update')->name('user.update');
-//rutas para obtener la img de las carpeta storage del usuario por medio del controlador y asi colocarlas en la view de app.blade.php y el formul de config.blade.php
+//rutas para obtener la img de las carpeta storage del usuario por medio del controlador y asi colocarlas en la view de home.blade.php y el formul de config.blade.php
 Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.avatar');
 
 
-// --------------IMAGEN---------------------
+//IMAGEN
 //link en view app.blade.php, el controlador te envia ala view createimg.blade.php formulario para crear una img y descripcion
 Route::get('/subir/imagen', 'ImageController@createimg')->name('image.create');
 //envia los datos del view createimg.blade.php formulario al controlador para guarda una img con su descripcion creada por el user 
@@ -62,6 +62,11 @@ Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.fi
 //ruta para mostrar la view de detalle.blade.php el link esta en la view home.blade.php
 Route::get('/imagen/{id}', 'ImageController@detalles')->name('image.detalle');
 
+
+// COMENTARIO
+
+//ruta para guarda el comentario atraves de el controlador y el metodo getcomentario, el formulario esta en la view detalle.blade.php
+Route::post('/comentario/guardar', 'ComentarioController@getcomentario')->name('comentario.guardar');
 
 
 
@@ -76,7 +81,6 @@ Route::get('/imagen/editar/{id}', 'ImageController@edit')->name('image.edit');
 Route::post('/image/update', 'ImageController@update')->name('image.update');
 
 // COMENTARIO
-Route::post('/comment/save', 'CommentController@save')->name('comment.save');
 Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
 
 // LIKE

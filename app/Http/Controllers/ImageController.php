@@ -73,6 +73,7 @@ class ImageController extends Controller
 		//extrae los registro por medio del parametro $id
 		$image = Image::find($id);
 		//te envia ala view image/detalle.blade.php
+		//no se utiliza  en la view un foreach por solo contiene un registro por medio del id
 		return view('image.detalle',[
 			'imagen' => $image
 		]);

@@ -45,9 +45,11 @@
                   <h2>Comentarios ({{count($imagen->comments)}})</h2>
                   <hr>
 
-                  <form method="POST" action="">
+                  <!--form para realizar un cmentario de la img-->
+                  <form method="POST" action="{{ route('comentario.guardar')}}">
                      @csrf
-
+                     
+                     <!--este input almacena el id que viene en el objeto imagen-->
                      <input type="hidden" name="image_id" value="{{$imagen->id}}" />
                      <p>
                         <textarea class="form-control {{ $errors->has('contenido') ? 'is-invalid' : '' }}"

@@ -16,6 +16,7 @@
 
                @if($imagen->user->image)
                <div class="container-avatar">
+                  <!--ruta para obtener la img de perfil en el disk storage/app/user-->
                   <img src="{{ route('user.avatar',['filename'=>$imagen->user->image]) }}" class="avatar" alt="" />
                </div>
                @endif
@@ -32,6 +33,7 @@
 
             <div class="card-body">
                <div class="image-container">
+                <!--ruta para obtener la img del disk storage/app/images-->
                   <img src="{{ route('image.file',['filename' => $imagen->image_path]) }}" />
                </div>
 
