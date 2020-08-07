@@ -40,6 +40,7 @@
                </div>
 
                <div class="clearfix"></div>
+
                <div class="comments">
 
                   <h2>Comentarios ({{count($imagen->comments)}})</h2>
@@ -65,11 +66,23 @@
                      </button>
                   </form>
 
+                  <hr>
+
+						@foreach($imagen->comments as $comentario)
+						<div class="comment">
+
+							<span class="nickname">{{'@'.$comentario->user->nick}} </span>
+							<span class="nickname date">{{' | '.\FormatoHora::LongTimeFilter($comentario->created_at)}}</span>
+							<p>{{$comentario->content}}<br/> </p>
+						</div>
+						@endforeach
+
                </div>
 
             </div>
 
          </div>
+         
       </div>
 
       @endsection
