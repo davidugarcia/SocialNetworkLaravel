@@ -49,7 +49,7 @@
                   <!--form para realizar un cmentario de la img-->
                   <form method="POST" action="{{ route('comentario.guardar')}}">
                      @csrf
-                     
+
                      <!--este input almacena el id que viene en el objeto imagen-->
                      <input type="hidden" name="image_id" value="{{$imagen->id}}" />
                      <p>
@@ -68,21 +68,31 @@
 
                   <hr>
 
-						@foreach($imagen->comments as $comentario)
-						<div class="comment">
+                  @foreach($imagen->comments as $comentario)
 
-							<span class="nickname">{{'@'.$comentario->user->nick}} </span>
-							<span class="nickname date">{{' | '.\FormatoHora::LongTimeFilter($comentario->created_at)}}</span>
-							<p>{{$comentario->content}}<br/> </p>
-						</div>
-						@endforeach
+                  <div class="comment">
+
+                     <span class="nickname">{{'@'.$comentario->user->nick}} </span>
+                     <span class="nickname date">{{' | '.\FormatoHora::LongTimeFilter($comentario->created_at)}}</span>
+                     <p>{{$comentario->content}}<br />
+                        <!--condicional para poder eliminar el comentario-->
+                        @if(Auth::check() && ($comentario->user_id == Auth::user()->id || $comentario->image->user_id ==
+                        Auth::user()->id))
+                        <a href="{{ route('comentario.eliminar', ['id' => $comentario->id]) }}" class="btn btn-sm btn-danger">
+                           Eliminar
+                        </a>
+                        @endif
+                     </p>
+                  </div>
+
+                  @endforeach
 
                </div>
 
             </div>
 
          </div>
-         
+
       </div>
 
       @endsection

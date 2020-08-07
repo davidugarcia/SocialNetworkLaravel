@@ -70,7 +70,7 @@ class ImageController extends Controller
 	}
 
 	public function detalles($id){
-		//extrae los registro por medio del parametro $id
+		//este objeto contiene todo los registros de las 4 tablas que se relacionan en el modelo image por medio del parametro $id
 		$image = Image::find($id);
 		//te envia ala view image/detalle.blade.php
 		//no se utiliza  en la view un foreach por solo contiene un registro por medio del id

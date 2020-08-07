@@ -67,7 +67,8 @@ Route::get('/imagen/{id}', 'ImageController@detalles')->name('image.detalle');
 
 //ruta para guarda el comentario atraves de el controlador y el metodo getcomentario, el formulario esta en la view detalle.blade.php
 Route::post('/comentario/guardar', 'ComentarioController@getcomentario')->name('comentario.guardar');
-
+//
+Route::get('/comentario/eliminar/{id}', 'ComentarioController@eliminar')->name('comentario.eliminar');
 
 
 /*
@@ -81,7 +82,7 @@ Route::get('/imagen/editar/{id}', 'ImageController@edit')->name('image.edit');
 Route::post('/image/update', 'ImageController@update')->name('image.update');
 
 // COMENTARIO
-Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+
 
 // LIKE
 Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
