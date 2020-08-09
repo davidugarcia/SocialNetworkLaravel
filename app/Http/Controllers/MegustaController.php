@@ -7,11 +7,20 @@ use App\Like;
 
 class MegustaController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
+   public function __construct(){
+      $this->middleware('auth');
+   }
 
-    public function like($image_id){
+   public function index(){
+		$user = \Auth::user();
+		$likes = Like::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(5);
+		
+		return view('like.index',[
+			'likes' => $likes
+		]);
+	}
+
+   public function like($image_id){
         // Recoger datos del usuario y la imagen
         $user = \Auth::user();
 
@@ -33,7 +42,7 @@ class MegustaController extends Controller
             //utilizando JSON
             //envia por formato json el objeto
             return response()->json([
-				'like' => $like
+				'megusta' => $like
 			]);
 			
 		}else{
@@ -44,12 +53,12 @@ class MegustaController extends Controller
      
     }
 
-    public function dislike($image_id){
+   public function dislike($image_id){
 		// Recoger datos del usuario y la imagen
 		$user = \Auth::user();
 		
         // Condicion para ver si ya existe el like y no duplicarlo
-        //saca un unico objeto
+        //saca un unico registro y forma un objeto
 		$like = Like::where('user_id', $user->id)
 				            ->where('image_id', $image_id)
 							->first();
@@ -59,7 +68,7 @@ class MegustaController extends Controller
 			$like->delete();
 			
 			return response()->json([
-				'like' => $like,
+				'nomegusta' => $like,
 				'message' => 'Has dado dislike correctamente'
 			]);
 		}else{
