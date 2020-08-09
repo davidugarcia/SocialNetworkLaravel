@@ -33,7 +33,7 @@
 
             <div class="card-body">
                <div class="image-container">
-                <!--ruta para obtener la img del disk storage/app/images-->
+                  <!--ruta para obtener la img del disk storage/app/images-->
                   <img src="{{ route('image.file',['filename' => $imagen->image_path]) }}" />
                </div>
 
@@ -44,7 +44,22 @@
                </div>
 
                <div class="likes">
-                  <img src="{{asset('img/heart-black.png')}}" data-id="" class="btn-dislike" />
+
+                  <!-- Comprobar si el usuario le dio like a la imagen -->
+                  <?php $user_like = false; ?>
+                  @foreach($imagen->likes as $like)
+                  @if($like->user->id == Auth::user()->id)
+                  <?php $user_like = true; ?>
+                  @endif
+                  @endforeach
+
+                  @if($user_like)
+                  <img src="{{asset('img/heart-red.png')}}" data-id="{{$imagen->id}}" class="btn-dislike" />
+                  @else
+                  <img src="{{asset('img/heart-black.png')}}" data-id="{{$imagen->id}}" class="btn-like" />
+                  @endif
+
+                  <span class="number_likes">{{count($imagen->likes)}}</span>
                </div>
 
 
