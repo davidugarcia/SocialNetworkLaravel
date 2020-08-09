@@ -36,9 +36,25 @@
                </div>
 
                <div class="likes">
-                  <img src="{{asset('img/heart-black.png')}}" data-id="" class="btn-like" />
-               </div>
 
+                  <!-- Comprobar si el usuario le dio like a la imagen -->
+                  <?php $user_like = false; ?>
+                  @foreach($imagen->likes as $like)
+                  @if($like->user->id == Auth::user()->id)
+                  <?php $user_like = true; ?>
+                  @endif
+                  @endforeach
+
+                  @if($user_like)
+                  <img src="{{asset('img/heart-red.png')}}" data-id="{{$imagen->id}}" class="btn-dislike" />
+                  @else
+                  <img src="{{asset('img/heart-black.png')}}" data-id="{{$imagen->id}}" class="btn-like" />
+                  @endif
+
+                  <span class="number_likes">{{count($imagen->likes)}}</span>
+
+               </div>
+               
                <div class="clearfix"></div>
 
                <div class="comments">
@@ -78,7 +94,8 @@
                         <!--condicional para poder eliminar el comentario-->
                         @if(Auth::check() && ($comentario->user_id == Auth::user()->id || $comentario->image->user_id ==
                         Auth::user()->id))
-                        <a href="{{ route('comentario.eliminar', ['id' => $comentario->id]) }}" class="btn btn-sm btn-danger">
+                        <a href="{{ route('comentario.eliminar', ['id' => $comentario->id]) }}"
+                           class="btn btn-sm btn-danger">
                            Eliminar
                         </a>
                         @endif
