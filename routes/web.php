@@ -72,7 +72,8 @@ Route::get('/comentario/eliminar/{id}', 'ComentarioController@eliminar')->name('
 // LIKE
 Route::get('/like/{image_id}', 'MegustaController@like')->name('megusta.guardar');
 Route::get('/dislike/{image_id}', 'MegustaController@dislike')->name('megusta.borrar');
-
+//ruta para mostrar la view l imge de like en favorito, el link esta en app.blade.php 
+Route::get('/likes', 'MegustaController@index')->name('Megusta');
 /*
 Route::get('/perfil/{id}', 'UserController@profile')->name('profile');
 Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
@@ -86,5 +87,4 @@ Route::post('/image/update', 'ImageController@update')->name('image.update');
 // LIKE
 
 
-Route::get('/likes', 'LikeController@index')->name('likes');
 */

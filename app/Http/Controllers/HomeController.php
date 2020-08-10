@@ -31,7 +31,7 @@ class HomeController extends Controller
         //se utiliza el objeto pagination por cinco elementos por paginas
         $images = Image::orderBy('id', 'desc')->paginate(5);
         return view('home', [
-			'images' => $images
+			'imagess' => $images
 		]);
     }
 }

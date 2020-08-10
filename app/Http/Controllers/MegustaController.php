@@ -15,8 +15,8 @@ class MegustaController extends Controller
 		$user = \Auth::user();
 		$likes = Like::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(5);
 		
-		return view('like.index',[
-			'likes' => $likes
+		return view('likes.index',[
+			'likess' => $likes
 		]);
 	}
 

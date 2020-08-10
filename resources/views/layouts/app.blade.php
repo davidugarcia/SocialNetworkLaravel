@@ -62,8 +62,8 @@
                         <a href="" class="nav-link">Gente</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Favoritas</a>
-                    </li>
+						<a href="{{ route('Megusta') }}" class="nav-link">Favoritas</a>
+					</li>
                     <li class="nav-item">
                         <a href="{{ route('image.create') }}" class="nav-link">Subir imagen</a>
                     </li>
