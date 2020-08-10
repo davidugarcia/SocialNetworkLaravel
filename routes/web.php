@@ -50,6 +50,8 @@ Route::get('/configuraciones', 'usuarioController@config')->name('config');
 Route::post('/user/update', 'usuarioController@update')->name('user.update');
 //rutas para obtener la img de las carpeta storage del usuario por medio del controlador y asi colocarlas en la view de home.blade.php y el formul de config.blade.php
 Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.avatar');
+//
+Route::get('/perfil/{id}', 'usuarioController@perfiluser')->name('perfiluser');
 
 
 //IMAGEN
@@ -75,7 +77,7 @@ Route::get('/dislike/{image_id}', 'MegustaController@dislike')->name('megusta.bo
 //ruta para mostrar la view l imge de like en favorito, el link esta en app.blade.php 
 Route::get('/likes', 'MegustaController@index')->name('Megusta');
 /*
-Route::get('/perfil/{id}', 'UserController@profile')->name('profile');
+
 Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
 
 // IMAGEN

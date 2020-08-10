@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 //se llaman estos archivos para utilizar sus metodos en el codigo
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+//modelo user
+use App\User;
 
 class usuarioController extends Controller
 {
@@ -88,6 +90,15 @@ class usuarioController extends Controller
 	public function getImage($filename){
 		$file = Storage::disk('users')->get($filename);
 		return new Response($file, 200);
+	}
+
+	
+	public function perfiluser($id){
+		$user = User::find($id);
+		
+		return view('usuario.perfil', [
+			'usuario' => $user
+		]);
 	}
 
 }

@@ -82,7 +82,7 @@
 									
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('perfiluser', ['id' => Auth::user()->id]) }}">
                                 Mi perfil
                             </a>
                             <a class="dropdown-item" href="{{ route('config') }}">
