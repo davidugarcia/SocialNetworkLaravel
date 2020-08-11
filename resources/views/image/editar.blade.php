@@ -12,8 +12,8 @@
 
 				<div class="card-body">
 
-					<form method="POST" action="" enctype="multipart/form-data">
-						@csrf
+               <form method="POST" action="{{route('image.update')}}" enctype="multipart/form-data">    
+                  @csrf
 
 						<input type="hidden" name="image_id" value="{{$imagess->id}}" />
 
@@ -24,7 +24,7 @@
 								<div class="container-avatar">
 									<img src="{{ route('image.file',['filename' => $imagess->image_path]) }}" class="avatar"/>									
 								</div>
-								@endif
+                        @endif
 								<input id="image_path" type="file" name="image_path" class="form-control {{ $errors->has('image_path') ? 'is-invalid' : '' }}" />
 
 								@if($errors->has('image_path'))

@@ -64,8 +64,10 @@ Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.fi
 Route::get('/imagen/{id}', 'ImageController@detalles')->name('image.detalle');
 //ruta para eliminar una img y todo lo relacionado a la publicacion que realizo el user en la view detalles
 Route::get('/image/eliminar/{id}', 'ImageController@eliminar')->name('image.eliminar');
-//
+//ruta para editar datos de la publicacion de una imagen y su descripcion en la view de editar.blade.php
 Route::get('/imagen/editar/{id}', 'ImageController@editar')->name('image.editar');
+//ruta para actualizar lo datos de la view editar,blade.php y enviarlos al controlador y luego ala database
+Route::post('/image/update', 'ImageController@update')->name('image.update');
 
 // COMENTARIO
 //ruta para guarda el comentario atraves de el controlador y el metodo getcomentario, el formulario esta en la view detalle.blade.php

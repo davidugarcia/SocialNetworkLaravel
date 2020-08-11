@@ -22,7 +22,7 @@ class ImageController extends Controller
 	public function createimg(){
         //presenta la vista en la carpeta file create
 		return view('image.createimg');
-    }
+   }
     
     public function saveimg(Request $request){
 		
@@ -130,6 +130,35 @@ class ImageController extends Controller
 			return redirect()->route('home');
 		}
 	}
-	
 
+	public function update(Request $request){
+		//Validación
+		$validate = $this->validate($request, [
+			'image_path'  => 'image',
+			'description' => 'required'
+		]);
+		
+		// Recoger datos
+		$image_id = $request->input('image_id');
+		$image_path = $request->file('image_path');
+		$description = $request->input('description');
+		
+		// Conseguir objeto image
+		$image = Image::find($image_id);
+		$image->description = $description;
+		
+		// Subir fichero
+		if($image_path){
+			$image_path_name = time().$image_path->getClientOriginalName();
+			Storage::disk('images')->put($image_path_name, File::get($image_path));
+			$image->image_path = $image_path_name;
+		}
+		
+		// Actualizar registro
+		$image->update();
+		
+		return redirect()->route('image.detalle', ['id' => $image_id])
+						 ->with(['message' => 'Imagen actualizada con exito']);
+	}
+	
 }
