@@ -50,9 +50,8 @@ Route::get('/configuraciones', 'usuarioController@config')->name('config');
 Route::post('/user/update', 'usuarioController@update')->name('user.update');
 //rutas para obtener la img de las carpeta storage del usuario por medio del controlador y asi colocarlas en la view de home.blade.php y el formul de config.blade.php
 Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.avatar');
-//
+//muestra una view de perfil del usuario o los demas usuario por medio del link mi perfil cuando esta registrado o el perfil de otro al darle clik al nombre del que publico la img (app.blade.php y detalle.blade.php)
 Route::get('/perfil/{id}', 'usuarioController@perfiluser')->name('perfiluser');
-
 
 //IMAGEN
 //link en view app.blade.php, el controlador te envia ala view createimg.blade.php formulario para crear una img y descripcion
@@ -63,7 +62,8 @@ Route::post('/image/guardar', 'ImageController@saveimg')->name('image.guardar');
 Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');
 //ruta para mostrar la view de detalle.blade.php el link esta en la view home.blade.php
 Route::get('/imagen/{id}', 'ImageController@detalles')->name('image.detalle');
-
+//ruta para eliminar una img y todo lo relacionado a la publicacion que realizo el user en la view detalles
+Route::get('/image/eliminar/{id}', 'ImageController@eliminar')->name('image.eliminar');
 
 // COMENTARIO
 //ruta para guarda el comentario atraves de el controlador y el metodo getcomentario, el formulario esta en la view detalle.blade.php
@@ -72,6 +72,7 @@ Route::post('/comentario/guardar', 'ComentarioController@getcomentario')->name('
 Route::get('/comentario/eliminar/{id}', 'ComentarioController@eliminar')->name('comentario.eliminar');
 
 // LIKE
+//ambas rutas estan relacionadas a un eventos que ocurre al dar click para dar like y dislike, public/js/main.js y la view detalle.blade.php
 Route::get('/like/{image_id}', 'MegustaController@like')->name('megusta.guardar');
 Route::get('/dislike/{image_id}', 'MegustaController@dislike')->name('megusta.borrar');
 //ruta para mostrar la view l imge de like en favorito, el link esta en app.blade.php 
@@ -82,7 +83,6 @@ Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
 
 // IMAGEN
 
-Route::get('/image/delete/{id}', 'ImageController@delete')->name('image.delete');
 Route::get('/imagen/editar/{id}', 'ImageController@edit')->name('image.edit');
 Route::post('/image/update', 'ImageController@update')->name('image.update');
 

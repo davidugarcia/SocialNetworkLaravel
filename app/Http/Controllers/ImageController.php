@@ -80,6 +80,43 @@ class ImageController extends Controller
 
 	}
 
+	public function eliminar($id){
+
+		$user = \Auth::user();
+		$image = Image::find($id);
+		$commentarios = Comment::where('image_id', $id)->get();
+		$likess = Like::where('image_id', $id)->get();
+		
+		if($user && $image && $image->user->id == $user->id){
+			
+			// Eliminar comentarios
+			if($commentarios && count($commentarios) >= 1){
+				foreach($commentarios as $comment){
+					$comment->delete();
+				}
+			}
+			
+			// Eliminar los likes
+			if($likess && count($likess) >= 1){
+				foreach($likess as $like){
+					$like->delete();
+				}
+			}
+			
+			// Eliminar ficheros de imagen
+			Storage::disk('images')->delete($image->image_path);
+			
+			// Eliminar registro imagen
+			$image->delete();
+			
+			$message = array('message' => 'La imagen se ha borrado correctamente.');
+		}else{
+			$message = array('message' => 'La imagen no se ha borrado.');
+		}
+		
+		return redirect()->route('home')->with($message);
+	}
+
 
 
 }

@@ -6,9 +6,11 @@
 
       <div class="col-md-8">
 
+         @include('includes.message')
+
          <!--la variable $images proviene del controlador Home metodo index-->
          @foreach($imagess as $imagen)
-             @include('includes.image',['img'=>$imagen])
+            @include('includes.image',['img'=>$imagen])
          @endforeach
 
          <div class="clearfix"></div>
