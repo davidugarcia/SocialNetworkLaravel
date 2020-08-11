@@ -64,6 +64,8 @@ Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.fi
 Route::get('/imagen/{id}', 'ImageController@detalles')->name('image.detalle');
 //ruta para eliminar una img y todo lo relacionado a la publicacion que realizo el user en la view detalles
 Route::get('/image/eliminar/{id}', 'ImageController@eliminar')->name('image.eliminar');
+//
+Route::get('/imagen/editar/{id}', 'ImageController@editar')->name('image.editar');
 
 // COMENTARIO
 //ruta para guarda el comentario atraves de el controlador y el metodo getcomentario, el formulario esta en la view detalle.blade.php
@@ -83,7 +85,7 @@ Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
 
 // IMAGEN
 
-Route::get('/imagen/editar/{id}', 'ImageController@edit')->name('image.edit');
+
 Route::post('/image/update', 'ImageController@update')->name('image.update');
 
 // LIKE

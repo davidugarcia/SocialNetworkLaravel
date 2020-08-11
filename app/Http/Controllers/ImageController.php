@@ -117,6 +117,19 @@ class ImageController extends Controller
 		return redirect()->route('home')->with($message);
 	}
 
+	public function editar($id){
 
+		$user = \Auth::user();
+		$image = Image::find($id);
+		
+		if($user && $image && $image->user->id == $user->id){
+			return view('image.editar', [
+				'imagess' => $image
+			]);
+		}else{
+			return redirect()->route('home');
+		}
+	}
+	
 
 }
