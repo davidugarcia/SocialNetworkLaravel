@@ -52,6 +52,8 @@ Route::post('/user/update', 'usuarioController@update')->name('user.update');
 Route::get('/user/avatar/{filename}', 'usuarioController@getImage')->name('user.avatar');
 //muestra una view de perfil del usuario o los demas usuario por medio del link mi perfil cuando esta registrado o el perfil de otro al darle clik al nombre del que publico la img (app.blade.php y detalle.blade.php)
 Route::get('/perfil/{id}', 'usuarioController@perfiluser')->name('perfiluser');
+//
+Route::get('/gente', 'usuarioController@index')->name('user.index');
 
 //IMAGEN
 //link en view app.blade.php, el controlador te envia ala view createimg.blade.php formulario para crear una img y descripcion
@@ -84,13 +86,5 @@ Route::get('/likes', 'MegustaController@index')->name('Megusta');
 /*
 
 Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
-
-// IMAGEN
-
-
-Route::post('/image/update', 'ImageController@update')->name('image.update');
-
-// LIKE
-
 
 */
