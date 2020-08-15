@@ -71,9 +71,10 @@ window.addEventListener('load', function() {
     //se invoca la function
     dislike();
 
-    /* BUSCADOR
-	$('#buscador').submit(function(e){
-		$(this).attr('action',url+'/gente/'+$('#buscador #search').val());
-	});*/
+    //BUSCADOR
+    //Obtiene este evento del form que esta en la view usuario/index.blade.php, luego esta la aplica ala ruta ubicada en web.php
+    $('#buscador').submit(function(e) {
+        $(this).attr('action', url + '/gente/' + $('#buscador #search').val());
+    });
 
 });

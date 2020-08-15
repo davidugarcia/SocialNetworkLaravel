@@ -7,7 +7,7 @@
 
          <h1>Gente</h1>
          
-			<form method="GET" action="" id="buscador">
+			<form method="GET" action="{{ route('user.index') }}" id="buscador">
 				<div class="row">
 					<div class="form-group col">
 						<input type="text" id="search" class="form-control" />

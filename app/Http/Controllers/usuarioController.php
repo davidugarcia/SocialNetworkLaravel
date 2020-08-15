@@ -16,9 +16,18 @@ class usuarioController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function index(){
+	public function index($search = null){
+		//datos provenientes de la ruta de buscar en la view usuario/index.blade.php
+		if(!empty($search)){
+			$users = User::where('nick', 'LIKE', '%'.$search.'%')
+							->orWhere('name', 'LIKE', '%'.$search.'%')
+							->orWhere('surname', 'LIKE', '%'.$search.'%')
+							->orderBy('id', 'desc')
+							->paginate(5);
+		}else{
+			$users = User::orderBy('id', 'desc')->paginate(5);
+		}
 		
-		$users = User::orderBy('id', 'desc')->paginate(5);
 		return view('usuario.index',[
 			'users' => $users
 		]);
